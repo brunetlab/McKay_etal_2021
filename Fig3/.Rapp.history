@@ -1,0 +1,2076 @@
+median(E)
+medianOE
+medianAL
+library(ggplot2)
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+pd <- position_jitter(width = 0.1)
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,#
+                      conf.interval=.95, .drop=TRUE) {#
+    library(plyr)#
+#
+    # New version of length which can handle NA's: if na.rm==T, don't count them#
+    length2 <- function (x, na.rm=FALSE) {#
+        if (na.rm) sum(!is.na(x))#
+        else       length(x)#
+    }#
+#
+    # This does the summary. For each group's data frame, return a vector with#
+    # N, mean, and sd#
+    datac <- ddply(data, groupvars, .drop=.drop,#
+      .fun = function(xx, col) {#
+        c(N    = length2(xx[[col]], na.rm=na.rm),#
+          mean = mean   (xx[[col]], na.rm=na.rm),#
+          sd   = sd     (xx[[col]], na.rm=na.rm)#
+        )#
+      },#
+      measurevar#
+    )#
+#
+    # Rename the "mean" column    #
+    datac <- rename(datac, c("mean" = measurevar))#
+#
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean#
+#
+    # Confidence interval multiplier for standard error#
+    # Calculate t-statistic for confidence interval: #
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1#
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)#
+    datac$ci <- datac$se * ciMult#
+#
+    return(datac)#
+}#
+#
+####################################################################
+# Load growth rate data for DR
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+pval = wilcox.test(data$GrowthRate ~ data$FeedingScheme)#
+#
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+ggplot(data, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("All Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)") + #
+ylim(0.2,0.6)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/all_fishsizes_DR.pdf", sep = "")#
+ggsave(saveout)
+data
+group.colors = c(AL = "", DR = "", OE = "")
+gcol = c(AL = "", DR = "", OE = "")
+gcol
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")
+ggplot(data, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("All Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)") + #
+ylim(0.2,0.6) +#
+scale_fill_manual(values=gcol)
+scale_color(values=gcol)
+scale_color_hue(values=gcol)
+ggplot(data, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("All Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)") + #
+ylim(0.2,0.6) +#
+scale_color_manual(values=gcol)
+pval = wilcox.test(data$GrowthRate ~ data$FeedingScheme)#
+#
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+ggplot(data, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("All Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)") + #
+ylim(0.2,0.6) +#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/all_fishsizes_DR.pdf", sep = "")#
+ggsave(saveout)
+pval= wilcox.test(dff$GrowthRate ~ dff$FeedingScheme)#
+ggplot(dff, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("Female Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)")+ #
+ylim(0.2,0.6)+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/female_fishsizes_DR.pdf", sep = "")#
+ggsave(saveout)
+pval = wilcox.test(dfm$GrowthRate ~ dfm$FeedingScheme)#
+#
+#Getting stats#
+meanDR = mean(dfm[dfm$FeedingScheme == "DR",]$GrowthRate)#
+meanAL = mean(dfm[dfm$FeedingScheme == "AL",]$GrowthRate)#
+ggplot(dfm, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("Male Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)")+ #
+ylim(0.25,0.6)+#
+scale_color_manual(values=gcol)#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/male_fishsizes_DR.pdf", sep = "")#
+ggsave(saveout)
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE)
+df$Uncrossed = as.factor(df$Uncrossed) #
+pval = wilcox.test(LiveEmbryosHarvestedDay0 ~ FeedingScheme, df)
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)
+df$FeedingScheme
+df$FeedingScheme[df$FeedingScheme == "7times", ]
+df$FeedingScheme[df$FeedingScheme == "7times"]
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE)
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+df
+df$FeedingScheme[df$FeedingScheme == c("7times")] = "AL"
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE)
+df$FeedingScheme[df$FeedingScheme == c("7times")] = "AL"
+df$FeedingScheme[df$FeedingScheme == "7times"] = as.factor("AL")
+as.factor("AL")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)
+df$Uncrossed = as.factor(df$Uncrossed)
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+pval = wilcox.test(LiveEmbryosHarvestedDay0 ~ FeedingScheme, df)
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)
+pval
+ggplot(df, aes(x = FeedingScheme, y = LiveEmbryosHarvestedDay0, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]
+df$FeedingScheme[df$FeedingScheme == "2hr"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "1hr"] = "OE"
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("2hr", "1hr"))
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"
+data$FeedingScheme
+data$FeedingScheme = as.factor(data$FeedingScheme)
+data$FeedingScheme
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]
+pval = wilcox.test(data$GrowthRate ~ data$FeedingScheme)#
+#
+#Getting stats#
+meanOE = mean(data[data $FeedingScheme == "1hr",]$GrowthRate)#
+meanAL = mean(data[data $FeedingScheme == "2hr",]$GrowthRate)#
+medianOE = median(data[data $FeedingScheme == "1hr",]$GrowthRate)#
+medianAL = median(data[data $FeedingScheme == "2hr",]$GrowthRate)
+meanOE = mean(data[data $FeedingScheme == "OE",]$GrowthRate)#
+meanAL = mean(data[data $FeedingScheme == "AL",]$GrowthRate)#
+medianOE = median(data[data $FeedingScheme == "OE",]$GrowthRate)#
+medianAL = median(data[data $FeedingScheme == "AL",]$GrowthRate)
+meanOE
+ggplot(data, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("All Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)")+ #
+ylim(0.2,0.6)+#
+scale_color_manual(values=gcol)
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/all_fishsizes_OE.pdf", sep = "")#
+ggsave(saveout)
+pval= wilcox.test(dff$GrowthRate ~ dff$FeedingScheme)#
+#
+ggplot(dff, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("Female Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)")+ #
+ylim(0.2,0.6)+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/female_fishsizes_OE.pdf", sep = "")#
+ggsave(saveout)
+pval = wilcox.test(dfm$GrowthRate ~ dfm$FeedingScheme)#
+#
+ggplot(dfm, aes(x = FeedingScheme, y = GrowthRate, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("Male Fish, p-value = %06f", pval$p.value)) +#
+ylab("Growth Rate (cm/week)")+ #
+ylim(0.25,0.6)+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/male_fishsizes_OE.pdf", sep = "")#
+ggsave(saveout)
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+pval = wilcox.test(LiveEmbryosHarvestedDay0 ~ FeedingScheme, df)#
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times",]$LiveEmbryosHarvestedDay0)
+medianDR
+medianAL
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)
+ggplot(df, aes(x = FeedingScheme, y = LiveEmbryosHarvestedDay0, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/DRferility.pdf", sep = "")#
+ggsave(saveout)
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+names(df)
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+pval = wilcox.test(LiveEmbryosHarvestedDay0 ~ FeedingScheme, df)#
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+ggplot(df, aes(x = FeedingScheme, y = LiveEmbryosHarvestedDay0, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/DRferilityLiveEmbryos.pdf", sep = "")#
+ggsave(saveout)#
+#
+#######################################################################
+# Total Embryos, DR vs AL#
+#######################################################################
+pval = wilcox.test(TotalEmbryosHarvested ~ FeedingScheme, df)#
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$TotalEmbryosHarvested)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$TotalEmbryosHarvested)#
+medianDR = median(df[df$FeedingScheme == "DR",]$TotalEmbryosHarvested)#
+medianAL = median(df[df$FeedingScheme == "AL",]$TotalEmbryosHarvested)#
+ggplot(df, aes(x = FeedingScheme, y = TotalEmbryosHarvested, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig3/DRferilityTotalEmbryos.pdf", sep = "")#
+ggsave(saveout)
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]
+col
+color
+boxit <- function(df, xa, ya, color, pd, pval, gcol) {#
+	ggplot(df, aes(x = FeedingScheme, y = LiveEmbryosHarvestedDay0, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+#
+return(p)#
+}
+p = boxit(df, FeedingScheme, LiveEmbryosHarvestedDay0, FeedingScheme, pd, pval, gcol)
+pval
+boxit <- function(df, xa, ya, color, pd, pval, gcol) {#
+	p = ggplot(df, aes(x = FeedingScheme, y = LiveEmbryosHarvestedDay0, color = FeedingScheme)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+#
+return(p)#
+}#
+#
+p = boxit(df, FeedingScheme, LiveEmbryosHarvestedDay0, FeedingScheme, pd, pval, gcol)
+p
+boxit <- function(df, xa, ya, color, pd, pval, gcol) {#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pd, pval, gcol)
+df
+pd
+boxit <- function(df, xa, ya, color, pd, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+df
+xa
+gcol
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) #
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point() + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,  family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	return(pd)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", pval, gcol)
+p
+gcol
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(df, df$FeedingScheme, df$LiveEmbryosHarvestedDay0, df$FeedingScheme, pval, gcol)
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+data
+p = boxit(data, data$FeedingScheme, data $LiveEmbryosHarvestedDay0, data $FeedingScheme, pval, gcol)
+data
+boxit <- function(df, xa, ya, color, pval, gcol) {#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", pval, gcol)
+ya
+ya = "FeedingScheme"
+df$ya
+data
+data$ya
+data[, ya]
+pval = wilcox.test(df[,ya] ~ data[,xa])
+boxit <- function(df, xa, ya, color, gcol) {#
+	pval = wilcox.test(df[,ya] ~ data[,xa])#
+	pd <- position_jitter(width = 0.1)#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+return(p)#
+}#
+#
+p = boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", gcol)
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ data[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab("Fertility (embryos produced per mating)")+#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf")
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf")
+dff
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ data[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ data[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() +#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate")
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]#
+#
+####################################################################
+# Plot all fish growth rates first DR vs AL#
+####################################################################
+#
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only DR vs AL#
+####################################################################
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only DR vs AL#
+####################################################################
+#
+#Getting stats#
+meanDR = mean(dfm[dfm$FeedingScheme == "DR",]$GrowthRate)#
+meanAL = mean(dfm[dfm$FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]#
+#
+#Getting stats#
+meanOE = mean(data[data $FeedingScheme == "OE",]$GrowthRate)#
+meanAL = mean(data[data $FeedingScheme == "AL",]$GrowthRate)#
+medianOE = median(data[data $FeedingScheme == "OE",]$GrowthRate)#
+medianAL = median(data[data $FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/DRferilityLiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/DRferilityTotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme = factor(df$FeedingScheme, levels = c("7times/AL", "12times/OF"))
+#Getting stats#
+meanOE = mean(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme = factor(df$FeedingScheme, levels = c("7times/AL", "12times/OF"))#
+#
+#######################################################################
+# Fertilized embryos first#
+#######################################################################
+#
+#Getting stats#
+meanOE = mean(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/fertilityOE_LiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/fertilityOE_TotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/DRferilityLiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/DRferilityTotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
+df
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
+df = df[df$FeedingScheme != "manual", ]
+df$FeedingScheme
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"
+df$FeedingScheme
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
+df = df[df$FeedingScheme != "manual", ]
+df
+df$FeedingScheme[df$FeedingScheme == "7times/AL"]
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"
+df$FeedingScheme
+#Getting stats#
+meanOE = mean(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "12times/OF",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "7times/AL",]$LiveEmbryosHarvestedDay0)
+meanOE = mean(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/fertilityOE_LiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/fertilityOE_TotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + geom_text(aes(colour=Type)+#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + geom_text(aes(colour="#010101")+#
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+geom_text(aes(color="#010101")+#
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+#geom_text(aes(color="#010101")+#
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+geom_text(aes(color="#010101"))+#
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+geom_text(aes(color="#010101"))+#
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none") + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")
+# Growth rate for AL vs DR#
+library(ggplot2)#
+#
+####################################################################
+# Functions#
+####################################################################
+#
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,#
+                      conf.interval=.95, .drop=TRUE) {#
+    library(plyr)#
+#
+    # New version of length which can handle NA's: if na.rm==T, don't count them#
+    length2 <- function (x, na.rm=FALSE) {#
+        if (na.rm) sum(!is.na(x))#
+        else       length(x)#
+    }#
+#
+    # This does the summary. For each group's data frame, return a vector with#
+    # N, mean, and sd#
+    datac <- ddply(data, groupvars, .drop=.drop,#
+      .fun = function(xx, col) {#
+        c(N    = length2(xx[[col]], na.rm=na.rm),#
+          mean = mean   (xx[[col]], na.rm=na.rm),#
+          sd   = sd     (xx[[col]], na.rm=na.rm)#
+        )#
+      },#
+      measurevar#
+    )#
+#
+    # Rename the "mean" column    #
+    datac <- rename(datac, c("mean" = measurevar))#
+#
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean#
+#
+    # Confidence interval multiplier for standard error#
+    # Calculate t-statistic for confidence interval: #
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1#
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)#
+    datac$ci <- datac$se * ciMult#
+#
+    return(datac)#
+}#
+#
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+####################################################################
+# Load growth rate data for DR vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]#
+#
+####################################################################
+# Plot all fish growth rates first DR vs AL#
+####################################################################
+#
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only DR vs AL#
+####################################################################
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only DR vs AL#
+####################################################################
+#
+#Getting stats#
+meanDR = mean(dfm[dfm$FeedingScheme == "DR",]$GrowthRate)#
+meanAL = mean(dfm[dfm$FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Growth Rate for OE vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]#
+#
+#Getting stats#
+meanOE = mean(data[data $FeedingScheme == "OE",]$GrowthRate)#
+meanAL = mean(data[data $FeedingScheme == "AL",]$GrowthRate)#
+medianOE = median(data[data $FeedingScheme == "OE",]$GrowthRate)#
+medianAL = median(data[data $FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only#
+####################################################################
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only#
+####################################################################
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#######################################################################
+# Load fertility#
+#######################################################################
+#
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/DRferilityLiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total Embryos, DR vs AL#
+#######################################################################
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/DRferilityTotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")#
+#######################################################################
+# Load fertility data and plot#
+#######################################################################
+#
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"#
+#######################################################################
+# Fertilized embryos first#
+#######################################################################
+#
+#Getting stats#
+meanOE = mean(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/fertilityOE_LiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total embryos#
+#######################################################################
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/fertilityOE_TotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+# Growth rate for AL vs DR#
+library(ggplot2)#
+#
+####################################################################
+# Functions#
+####################################################################
+#
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,#
+                      conf.interval=.95, .drop=TRUE) {#
+    library(plyr)#
+#
+    # New version of length which can handle NA's: if na.rm==T, don't count them#
+    length2 <- function (x, na.rm=FALSE) {#
+        if (na.rm) sum(!is.na(x))#
+        else       length(x)#
+    }#
+#
+    # This does the summary. For each group's data frame, return a vector with#
+    # N, mean, and sd#
+    datac <- ddply(data, groupvars, .drop=.drop,#
+      .fun = function(xx, col) {#
+        c(N    = length2(xx[[col]], na.rm=na.rm),#
+          mean = mean   (xx[[col]], na.rm=na.rm),#
+          sd   = sd     (xx[[col]], na.rm=na.rm)#
+        )#
+      },#
+      measurevar#
+    )#
+#
+    # Rename the "mean" column    #
+    datac <- rename(datac, c("mean" = measurevar))#
+#
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean#
+#
+    # Confidence interval multiplier for standard error#
+    # Calculate t-statistic for confidence interval: #
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1#
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)#
+    datac$ci <- datac$se * ciMult#
+#
+    return(datac)#
+}#
+#
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+####################################################################
+# Load growth rate data for DR vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]#
+#
+####################################################################
+# Plot all fish growth rates first DR vs AL#
+####################################################################
+#
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only DR vs AL#
+####################################################################
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only DR vs AL#
+####################################################################
+#
+#Getting stats#
+meanDR = mean(dfm[dfm$FeedingScheme == "DR",]$GrowthRate)#
+meanAL = mean(dfm[dfm$FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Growth Rate for OE vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]#
+#
+#Getting stats#
+meanOE = mean(data[data $FeedingScheme == "OE",]$GrowthRate)#
+meanAL = mean(data[data $FeedingScheme == "AL",]$GrowthRate)#
+medianOE = median(data[data $FeedingScheme == "OE",]$GrowthRate)#
+medianAL = median(data[data $FeedingScheme == "AL",]$GrowthRate)#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only#
+####################################################################
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only#
+####################################################################
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#######################################################################
+# Load fertility#
+#######################################################################
+#
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+#
+#Getting stats#
+meanDR = mean(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianDR = median(df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/DRfertilityLiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total Embryos, DR vs AL#
+#######################################################################
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/DRfertilityTotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")#
+#######################################################################
+# Load fertility data and plot#
+#######################################################################
+#
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"#
+#######################################################################
+# Fertilized embryos first#
+#######################################################################
+#
+#Getting stats#
+meanOE = mean(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+meanAL = mean(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+medianOE = median(df[df$FeedingScheme == "OE",]$LiveEmbryosHarvestedDay0)#
+medianAL = median(df[df$FeedingScheme == "AL",]$LiveEmbryosHarvestedDay0)#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/fertilityOE_LiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total embryos#
+#######################################################################
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/fertilityOE_TotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+# Growth rate for AL vs DR#
+library(ggplot2)#
+#
+####################################################################
+# Functions#
+####################################################################
+#
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,#
+                      conf.interval=.95, .drop=TRUE) {#
+    library(plyr)#
+#
+    # New version of length which can handle NA's: if na.rm==T, don't count them#
+    length2 <- function (x, na.rm=FALSE) {#
+        if (na.rm) sum(!is.na(x))#
+        else       length(x)#
+    }#
+#
+    # This does the summary. For each group's data frame, return a vector with#
+    # N, mean, and sd#
+    datac <- ddply(data, groupvars, .drop=.drop,#
+      .fun = function(xx, col) {#
+        c(N    = length2(xx[[col]], na.rm=na.rm),#
+          mean = mean   (xx[[col]], na.rm=na.rm),#
+          sd   = sd     (xx[[col]], na.rm=na.rm)#
+        )#
+      },#
+      measurevar#
+    )#
+#
+    # Rename the "mean" column    #
+    datac <- rename(datac, c("mean" = measurevar))#
+#
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean#
+#
+    # Confidence interval multiplier for standard error#
+    # Calculate t-statistic for confidence interval: #
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1#
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)#
+    datac$ci <- datac$se * ciMult#
+#
+    return(datac)#
+}#
+#
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+meanAL = mean(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+meanDR = mean(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+medianAL =  median(data[data$FeedingScheme == "AL", c("GrowthRate")])#
+medianDR = median(data[data$FeedingScheme == "DR", c("GrowthRate")])#
+#
+nAL = dim(data[data$FeedingScheme == "AL", ])[1]#
+nDR = dim(data[data$FeedingScheme == "DR", ])[1]
+dim(data[data$FeedingScheme == "AL", ])[1]
+nAL = dim(dff[dff $FeedingScheme == "AL", ])[1]
+nAL = dim(dff[dff $FeedingScheme == "AL", ])[1]#
+nDR = dim(dff[dff $FeedingScheme == "DR", ])[1]
+nAL
+nDR
+print(nAL)
+print(nDR)
+meanAL = mean(dff[dff $FeedingScheme == "AL", c("GrowthRate")])#
+print(meanAL)#
+meanDR = mean(dff[dff $FeedingScheme == "DR", c("GrowthRate")])#
+print(meanDR)#
+medianAL =  median(dff[dff $FeedingScheme == "AL", c("GrowthRate")])#
+print(medianAL)#
+medianDR = median(dff[dff $FeedingScheme == "DR", c("GrowthRate")])#
+print(medianDR)
+cond1 = "AL"
+print("Mean, cond: ", cond1)
+print(paste("Mean, cond: ", cond1)
+print(paste("Mean, cond: ", cond1))
+meanAL
+print(paste("Mean, cond", cond1, ":", meanAL ))
+x = dim(dataset[dataset $FeedingScheme == cond1, ])[1]
+dataset = dff
+x = dim(dataset[dataset $FeedingScheme == cond1, ])[1]
+x
+getstats <- function(dataset, cond1, cond2) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c("GrowthRate")])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset $FeedingScheme == cond2, c("GrowthRate")])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset $FeedingScheme == cond1, c("GrowthRate")])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset $FeedingScheme == cond2, c("GrowthRate")])#
+print(paste("Median", cond2, ":", y3 ))#
+#
+}
+getstats(data, "AL", "DR")
+getstats(dff, "AL", "DR")
+getstats(data, "AL", "DR")
+stat
+getstats <- function(dataset, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset $FeedingScheme == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset $FeedingScheme == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset $FeedingScheme == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+getstats(data, "AL", "DR", "GrowthRate")
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+df
+df[df$FeedingScheme == "DR",]$LiveEmbryosHarvestedDay0
+dim(df[df$FeedingScheme == "DR", ])[1]
+median(df[df$FeedingScheme == "DR", c("LiveEmbryosHarvestedDay0")])
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+getstats(df, "AL", "DR", "TotalEmbryosHarvested")
+getstats(df, "AL", "OE", "LiveEmbryosHarvestedDay0")
+getstats <- function(dataset, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(data, "AL", "DR", "GrowthRate")
+getstats(dff, "AL", "DR", "GrowthRate")
+getstats(dfm, "AL", "DR", "GrowthRate")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+#
+#Getting stats#
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+getstats(df, "AL", "DR", "TotalEmbryosHarvested")
+df
+names(df)
+df$pair
+df
+df[df$Crossed == "6/29/20",]
+df[df$Crossed == "6/29/20", c("Pair", "FeedingScheme")]
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+getstats(df, "AL", "DR", "TotalEmbryosHarvested")
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"
+df$Crossed
+df[df$Crossed == "7/22/19", c("Pair", "FeedingScheme")]
+getstats(df, "AL", "OE", "LiveEmbryosHarvestedDay0")
+getstats(df, "AL", "OE", "TotalEmbryosHarvested")
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]
+getstats(data, "OE", "DR", "GrowthRate")
+getstats(data, "AL", "OE", "GrowthRate")
+getstats(dff, "AL", "OE", "GrowthRate")
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(dfm, "AL", "DR", "GrowthRate")
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]
+getstats(dfm, "AL", "OE", "GrowthRate")
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data = data[data$FeedingScheme != "52split",]#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(dfm, "AL", "DR", "GrowthRate")
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+getstats(df, "AL", "DR", "TotalEmbryosHarvested")
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"
+getstats(df, "AL", "OE", "LiveEmbryosHarvestedDay0")
+# Growth rate for AL vs DR#
+library(ggplot2)#
+#
+####################################################################
+# Functions#
+####################################################################
+#
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,#
+                      conf.interval=.95, .drop=TRUE) {#
+    library(plyr)#
+#
+    # New version of length which can handle NA's: if na.rm==T, don't count them#
+    length2 <- function (x, na.rm=FALSE) {#
+        if (na.rm) sum(!is.na(x))#
+        else       length(x)#
+    }#
+#
+    # This does the summary. For each group's data frame, return a vector with#
+    # N, mean, and sd#
+    datac <- ddply(data, groupvars, .drop=.drop,#
+      .fun = function(xx, col) {#
+        c(N    = length2(xx[[col]], na.rm=na.rm),#
+          mean = mean   (xx[[col]], na.rm=na.rm),#
+          sd   = sd     (xx[[col]], na.rm=na.rm)#
+        )#
+      },#
+      measurevar#
+    )#
+#
+    # Rename the "mean" column    #
+    datac <- rename(datac, c("mean" = measurevar))#
+#
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean#
+#
+    # Confidence interval multiplier for standard error#
+    # Calculate t-statistic for confidence interval: #
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1#
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)#
+    datac$ci <- datac$se * ciMult#
+#
+    return(datac)#
+}#
+#
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "McKay_CodeChecking"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}#
+#
+getstats <- function(dataset, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}#
+####################################################################
+# Load growth rate data for DR vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]#
+#
+####################################################################
+# Plot all fish growth rates first DR vs AL#
+####################################################################
+#
+getstats(data, "AL", "DR", "GrowthRate")#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only DR vs AL#
+####################################################################
+#
+getstats(dff, "AL", "DR", "GrowthRate")#
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only DR vs AL#
+####################################################################
+#
+getstats(dfm, "AL", "DR", "GrowthRate")#
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_DR.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Growth Rate for OE vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_OE.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+data = data[data$FeedingScheme != "manual",]#
+#
+data$FeedingScheme[data$FeedingScheme == "2hr"] = "AL"#
+data$FeedingScheme[data$FeedingScheme == "1hr"] = "OE"#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+#
+# split out males and females#
+dfm = data[data$Sex == "male", ]#
+dff = data[data$Sex == "female",]#
+#
+####################################################################
+# Plot all fish growth rates first OE vs AL#
+####################################################################
+#
+#Getting stats#
+getstats(data, "AL", "OE", "GrowthRate")#
+#
+boxit(data, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/all_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Female fish only#
+####################################################################
+#
+getstats(dff, "AL", "OE", "GrowthRate")#
+#
+boxit(dff, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/female_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+####################################################################
+# Male fish only#
+####################################################################
+#
+getstats(dfm, "AL", "OE", "GrowthRate")#
+#
+boxit(dfm, "FeedingScheme", "GrowthRate", "FeedingScheme", "Fig3/male_fishsizes_OE.pdf", "Feeding Scheme", "Growth Rate (cm/week)")#
+#
+#######################################################################
+#######################################################################
+# Load fertility#
+#######################################################################
+#
+df = read.table("fig3_DRfertility.csv", sep = ',', header = TRUE,stringsAsFactors = FALSE)#
+#
+# set date uncrossed to factor, then order levels#
+df$Uncrossed = as.factor(df$Uncrossed) #
+#
+# swap "7times" for "AL" to match with other data (and color scheme)#
+df$FeedingScheme[df$FeedingScheme == "7times"] = "AL"#
+#
+#######################################################################
+# LiveEmbryos first, DR vs AL#
+#######################################################################
+#
+#Getting stats#
+#
+df[df$Crossed == "6/29/20", c("Pair", "FeedingScheme")]#
+#
+getstats(df, "AL", "DR", "LiveEmbryosHarvestedDay0")#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/DRfertilityLiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total Embryos, DR vs AL#
+#######################################################################
+#
+getstats(df, "AL", "DR", "TotalEmbryosHarvested")#
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/DRfertilityTotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")#
+#######################################################################
+# Load fertility data and plot#
+#######################################################################
+#
+df = read.table("fig3_OEfertility.csv", sep = ',', header = TRUE, stringsAsFactors = FALSE)#
+#
+# subset to automatic feeding only#
+df = df[df$FeedingScheme != "manual", ]#
+#
+df$FeedingScheme[df$FeedingScheme == "7times/AL"] = "AL"#
+df$FeedingScheme[df$FeedingScheme == "12times/OF"] = "OE"#
+#######################################################################
+# Fertilized embryos first#
+#######################################################################
+#
+df[df$Crossed == "7/22/19", c("Pair", "FeedingScheme")]#
+#
+getstats(df, "AL", "OE", "LiveEmbryosHarvestedDay0")#
+#
+boxit(df, "FeedingScheme", "LiveEmbryosHarvestedDay0", "FeedingScheme", "Fig3/fertilityOE_LiveEmbryos.pdf", "Feeding Scheme", "Fertility (Fertilized Embryos per mating)")#
+#
+#######################################################################
+# Total embryos#
+#######################################################################
+#
+getstats(df, "AL", "OE", "TotalEmbryosHarvested")#
+#
+boxit(df, "FeedingScheme", "TotalEmbryosHarvested", "FeedingScheme", "Fig3/fertilityOE_TotalEmbryos.pdf", "Feeding Scheme", "Fertility (Total Embryos per mating)")
+# Growth rate for AL vs DR#
+library(ggplot2)#
+#
+####################################################################
+# Functions#
+####################################################################
+# dataset, xaxis, yaxis, colorgroup#
+boxit <- function(df, xa, ya, color, filename, xlabel, ylabel) {#
+	# "global" variables#
+	dirout = "McKay_CodeChecking"#
+#
+gcol = c(AL = "#0072B5", DR = "#EF932F", OE = "#010101")#
+#
+pd <- position_jitter(width = 0.1)#
+#
+	# getting pval#
+	pval = wilcox.test(df[,ya] ~ df[,xa])#
+	# real plot#
+	p = ggplot(df, aes_string(x = xa, y = ya, color = color)) + #
+geom_boxplot(width=0.5)  +#
+geom_point(position = pd) + #
+theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank() , text=element_text(size=16,family="Helvetica", colour = "#010101"), legend.position ="none", axis.text.x = element_text(colour = "#010101"), axis.text.y = element_text(colour = "#010101")) + #
+ggtitle(sprintf("p-value = %06f", pval$p.value)) +#
+ylab(ylabel)+ xlab(xlabel) +#
+scale_color_manual(values=gcol)#
+print(p)#
+#
+# filename#
+saveout = paste("~/Dropbox/", dirout, "/Figures/", filename, sep = "")#
+ggsave(saveout, p)#
+}
+getstats <- function(dataset, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+####################################################################
+# Load growth rate data for DR vs AL#
+####################################################################
+#
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(data, "AL", "DR", "GrowthRate")
+getstats(dff, "AL", "DR", "GrowthRate")
+getstats(dfm, "AL", "DR", "GrowthRate")
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)#
+#
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(data, "AL", "DR", "GrowthRate")
+data = read.table("fig3growthrate_DR.csv", sep = ',', header = TRUE)
+data$FeedingScheme = as.factor(data$FeedingScheme)#
+data$FeedingScheme = factor(data$FeedingScheme, levels = c("AL", "DR"))#
+#
+# split out males and females#
+dfm = data[data$Sex == "m", ]#
+dff = data[data$Sex == "f",]
+getstats(data, "AL", "DR", "GrowthRate")
+getstats(dff, "AL", "DR", "GrowthRate")
+getstats(dfm, "AL", "DR", "GrowthRate")

@@ -1,0 +1,1053 @@
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+opost
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,10)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,4)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,300)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/young_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/young_posttrain_CompassPlot.pdf")#
+#
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/old_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/old_posttrain_CompassPlot.pdf")
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)#
+#
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/young_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/young_posttrain_CompassPlot.pdf")#
+#
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/old_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#ggsave("../../Figures/Fig5/old_posttrain_CompassPlot.pdf")
+ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+ggsave("../../Figures/Fig5/young_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+ggsave("../../Figures/Fig5/young_posttrain_CompassPlot.pdf")#
+#
+ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+ggsave("../../Figures/Fig5/old_pretrain_CompassPlot.pdf")#
+#
+ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+ggsave("../../Figures/Fig5/old_posttrain_CompassPlot.pdf")
+library(ggplot2)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+# plot proportion startle#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip()#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() + coord_flip()#
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() + coord_flip()#
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))#
+#
+# plot proportion that came to top with food#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw()#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")
+# plot proportion that came to top with food#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip()#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() + coord_flip()#
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip()+ theme(legend. title = element_blank())
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip()+ theme(legend.title = element_blank())
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip()+ theme(legend.title = element_blank())
+pd <- position_jitter(width = 0.1)
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip() + theme(legend.position="none")
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat), width = 1) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse), width = 1) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip() + theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse), width = .5) + geom_bar(stat= "identity", position = 'dodge')  + theme_bw() + coord_flip() + theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() + theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")
+# plot proportion that came to top with food, horizontal bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip()+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))#
+#
+# plot proportion that came to top with food, horizontal bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip()+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")#
+#
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")#
+#
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")
+library(ggplot2)#
+#
+data1= read.table("../../Data/Training/bins_first5_f3.csv", sep = ',', header = FALSE)#
+data2= read.table("../../Data/Training/bins_14to19_f3.csv", sep = ',', header = FALSE)
+ggplot(data=data1,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)
+# now, aggregated data#
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)
+ggplot(p1, p2)
+plot(p1, p2)
+grid.arrange
+multiplot
+# Multiple plot function#
+##
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)#
+# - cols:   Number of columns in layout#
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored.#
+##
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),#
+# then plot 1 will go in the upper left, 2 will go in the upper right, and#
+# 3 will go all the way across the bottom.#
+##
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {#
+  library(grid)#
+#
+  # Make a list from the ... arguments and plotlist#
+  plots <- c(list(...), plotlist)#
+#
+  numPlots = length(plots)#
+#
+  # If layout is NULL, then use 'cols' to determine layout#
+  if (is.null(layout)) {#
+    # Make the panel#
+    # ncol: Number of columns of plots#
+    # nrow: Number of rows needed, calculated from # of cols#
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),#
+                    ncol = cols, nrow = ceiling(numPlots/cols))#
+  }#
+#
+ if (numPlots==1) {#
+    print(plots[[1]])#
+#
+  } else {#
+    # Set up the page#
+    grid.newpage()#
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))#
+#
+    # Make each plot, in the correct location#
+    for (i in 1:numPlots) {#
+      # Get the i,j matrix positions of the regions that contain this subplot#
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))#
+#
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,#
+                                      layout.pos.col = matchidx$col))#
+    }#
+  }#
+}
+multiplot(p1, p2, p3, p4)
+multiplot(p1, p2, p3, p4, cols = 4)
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank())
+p4
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank())
+p4
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3)#
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+multiplot(p1, p2, p3, p4, cols = 4)
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+multiplot(p1, p2, p3, p4, cols = 4)
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf")
+multiplot(p1, p2, p3, p4, cols = 4)
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf")
+p = multiplot(p1, p2, p3, p4, cols = 4)
+p
+install.packages("gridExtra")
+library(gridExtra)
+grid.arrange(p1,p2,p3,p4)
+grid.arrange(p1,p2,p3,p4, nrow = 1)
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf")
+p = grid.arrange(p1,p2,p3,p4, nrow = 1)
+p
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf", p)
+# now, aggregated data#
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)#
+#
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p = grid.arrange(p1,p2,p3,p4, nrow = 1)
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf", p)
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")
+submdata
+mdata
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+mdata = read.table("../../Data/Training/TrainingScoring.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/verticalbinaryCame2topwithfood.pdf")
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")
+submdata
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata))
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw()  #+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/verticalbinaryStartle.pdf")
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")
+ggsave("../../Figures/Fig5/verticalbinaryCame2topwithfood.pdf")
+subsdata
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)
+sdata
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]
+subsdata
+subsdata = as.data.frame(table(subsdata))
+subsdata
+subsdata[, percen := sum(Freq), by=list(startleResponse,AgeCat)]
+data <- data.table(name=rep(c("A","B"), each=4), cat1=c(1,1,0,0,1,1,0,0), cat2=c(1,0,1,0,1,0,1,0), freq=c(32,56,36,25,14,68,58,90))
+library(data.table)
+data <- data.table(name=rep(c("A","B"), each=4), cat1=c(1,1,0,0,1,1,0,0), cat2=c(1,0,1,0,1,0,1,0), freq=c(32,56,36,25,14,68,58,90))
+data
+data[, percen := sum(freq), by=list(name,cat1)]
+data
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = (table(subsdata))
+subdata
+subsdata
+subsdata = data.table(subsdata)
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+subsdata = data.table(subsdata)
+subsdata
+subsdata[, percen := sum(Freq), by=list(startleResponse,AgeCat)]
+data[, percen := freq/percen]
+subsdata[, percen := freq/percen]
+subsdata
+subsdata[, percen := Freq/percen]
+subsdata
+ggplot(subsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(startleResponse,AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw()  #+ theme(legend.position="none")
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(startleResponse,AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw()  #+ theme(legend.position="none")
+tsubsdata
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(startleResponse)]#
+tsubsdata[, percen := Freq/percen]
+tsubsdata
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw()  #+ theme(legend.position="none")
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryStartle.pdf")
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+tsubsdata = data.table(submdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]
+ggplot(submdata, aes(x = AgeCat, y = percen, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")
+percen
+tsubsdata
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryCame2topwithfood.pdf")
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() +  theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryStartle.pdf")
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+sdata$VidWhereStartled
+sdata$AgeCat
+wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+wilcox.test(mdata$VidWhereCame2Top ~ mdata$AgeCat)
+summary(sdata)
+describe(sdata)
+sdata
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+summary(sdata)
+summary(sdata$AgeCat)
+wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)
+x = wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)
+x
+mean(sdata[sdata$AgeCat == "young", VidWhereStartled])
+mean(sdata[sdata$AgeCat == "young", c("VidWhereStartled")])
+sdata[sdata$AgeCat == "young", c("VidWhereStartled")]
+mean(sdata[sdata$AgeCat == "old", c("VidWhereStartled")])
+sdata[sdata$AgeCat == "old", c("VidWhereStartled")]
+sdata
+sdata[sdata$VidWhereStartled != NA,]
+sdata[sdata$startleResponse == 1,]
+sdata = sdata[sdata$startleResponse == 1,]
+mean(sdata[sdata$AgeCat == "young", c("VidWhereStartled")])
+wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)
+sdata$VidWhereStartled
+sdata$AgeCat
+sdata
+mdata
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))
+mdata
+mean(mdata[mdata $AgeCat == "young", c("VidWhereCame2Top")])
+summary(mdata)
+mean(mdata[mdata $AgeCat == "young", c("VidWhereCame2Top")])#
+mean(mdata[mdata $AgeCat == "old", c("VidWhereCame2Top")])
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+# Plot manual#
+ggplot(data, aes(x = label, y = manindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/manualindex_youngold.pdf")
+# testing significance for manual:#
+wilcox.test(data$manindex ~ data$label)#
+#pvalue = 0.04871#
+# Plot auto#
+ggplot(data, aes(x = label, y = autoindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/autoindex_youngold.pdf")#
+#
+# testing significance for manual:#
+wilcox.test(data$autoindex ~ data$label)#
+#pvalue = 0.004947#
+ggplot(data, aes(x = manindex, y= autoindex)) + geom_point() + geom_smooth(method = "lm", fill = NA) + theme_bw()#
+ggsave("../../Figures/Fig5/autoVsmanindexscores.pdf")
+########################################
+# startle response#
+########################################
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() +  theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryStartle.pdf")#
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)#
+#pvalue = 1#
+#
+# summary stats#
+summary(sdata)#
+sdata = sdata[sdata$startleResponse == 1,]#
+mean(sdata[sdata$AgeCat == "young", c("VidWhereStartled")])#
+mean(sdata[sdata$AgeCat == "old", c("VidWhereStartled")])#
+########################################
+# movement response#
+########################################
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))#
+#
+# plot proportion that came to top with food, horizontal bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip()+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")#
+#
+# plot proportion that came to top with food, vertical bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+tsubsdata = data.table(submdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryCame2topwithfood.pdf")#
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(mdata$VidWhereCame2Top ~ mdata$AgeCat)#
+#pvalue = 0.2262#
+#
+summary(mdata)#
+mean(mdata[mdata $AgeCat == "young", c("VidWhereCame2Top")])#
+mean(mdata[mdata $AgeCat == "old", c("VidWhereCame2Top")])#
+########################################
+# Compass/Rose Plot#
+# https://github.com/philmassie/20160630_ggplot2_wind_rose#
+########################################
+# first, individual#
+library(ggplot2)#
+#
+data1= read.table("../../Data/Training/bins_first5_f3.csv", sep = ',', header = FALSE)#
+data2= read.table("../../Data/Training/bins_14to19_f3.csv", sep = ',', header = FALSE)#
+#
+ggplot(data=data1,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)#
+#
+ggsave("../../Figures/Fig5/First5trainingsf3_CompassPlot.pdf")#
+ggplot(data=data2,aes(x=V1,y=V2))+geom_bar(stat="identity") +coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("") + ylim(0,30)#
+ggsave("../../Figures/Fig5/Later14to19trainingsf3_CompassPlot.pdf")#
+#
+# now, aggregated data#
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)#
+#
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p = grid.arrange(p1,p2,p3,p4, nrow = 1)#
+#
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf", p)
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]
+data
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))#
+#
+pd <- position_jitter(width = 0.1)#
+# Plot manual#
+ggplot(data, aes(x = label, y = manindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/manualindex_youngold.pdf")#
+#
+# testing significance for manual:#
+wilcox.test(data$manindex ~ data$label)#
+#pvalue = 0.04871#
+# Plot auto#
+ggplot(data, aes(x = label, y = autoindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/autoindex_youngold.pdf")#
+#
+# testing significance for manual:#
+wilcox.test(data$autoindex ~ data$label)#
+#pvalue = 0.004947#
+ggplot(data, aes(x = manindex, y= autoindex)) + geom_point() + geom_smooth(method = "lm", fill = NA) + theme_bw()#
+ggsave("../../Figures/Fig5/autoVsmanindexscores.pdf")#
+#
+# lmodel <- lm(autoindex ~ manindex, data = data)#
+# summary(lmodel)#
+# # R^2 = 0.608#
+#
+# #estimate of slope: 0.45424#
+# #Call:#
+# lm(formula = autoindex ~ manindex, data = data)#
+#
+# Residuals:#
+      # Min        1Q    Median        3Q       Max #
+# -0.141879 -0.012387  0.003079  0.029601  0.060193 #
+#
+# Coefficients:#
+            # Estimate Std. Error t value Pr(>|t|)    #
+# (Intercept)  0.04602    0.01906   2.415   0.0281 *  #
+# manindex     0.45424    0.08683   5.231 8.23e-05 ***#
+# ---#
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1#
+#
+# Residual standard error: 0.04629 on 16 degrees of freedom#
+# Multiple R-squared:  0.6311,	Adjusted R-squared:  0.608 #
+# F-statistic: 27.37 on 1 and 16 DF,  p-value: 8.232e-05#
+########################################
+# startle response#
+########################################
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))#
+#
+# plot proportion startle, horizontally bar#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryStartle.pdf")#
+#
+# plot proportion startle#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() +  theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryStartle.pdf")#
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)#
+#pvalue = 1#
+#
+# summary stats#
+summary(sdata)#
+sdata = sdata[sdata$startleResponse == 1,]#
+mean(sdata[sdata$AgeCat == "young", c("VidWhereStartled")])#
+mean(sdata[sdata$AgeCat == "old", c("VidWhereStartled")])#
+########################################
+# movement response#
+########################################
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))#
+#
+# plot proportion that came to top with food, horizontal bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip()+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")#
+#
+# plot proportion that came to top with food, vertical bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+tsubsdata = data.table(submdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryCame2topwithfood.pdf")#
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(mdata$VidWhereCame2Top ~ mdata$AgeCat)#
+#pvalue = 0.2262#
+#
+summary(mdata)#
+mean(mdata[mdata $AgeCat == "young", c("VidWhereCame2Top")])#
+mean(mdata[mdata $AgeCat == "old", c("VidWhereCame2Top")])#
+########################################
+# Compass/Rose Plot#
+# https://github.com/philmassie/20160630_ggplot2_wind_rose#
+########################################
+# first, individual#
+library(ggplot2)#
+#
+data1= read.table("../../Data/Training/bins_first5_f3.csv", sep = ',', header = FALSE)#
+data2= read.table("../../Data/Training/bins_14to19_f3.csv", sep = ',', header = FALSE)#
+#
+ggplot(data=data1,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)#
+#
+ggsave("../../Figures/Fig5/First5trainingsf3_CompassPlot.pdf")#
+ggplot(data=data2,aes(x=V1,y=V2))+geom_bar(stat="identity") +coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("") + ylim(0,30)#
+ggsave("../../Figures/Fig5/Later14to19trainingsf3_CompassPlot.pdf")#
+#
+# now, aggregated data#
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)#
+#
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p = grid.arrange(p1,p2,p3,p4, nrow = 1)#
+#
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf", p)
+library(ggplot2)#
+library(gridExtra)#
+#
+data = read.table("../../Data/Training/allscoreslab.csv", sep = ',', header = TRUE)#
+data = data[data$label != "middle",]#
+#
+data$label = factor(data$label, c("young", "old"))#
+#
+pd <- position_jitter(width = 0.1)#
+# Plot manual#
+ggplot(data, aes(x = label, y = manindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/manualindex_youngold.pdf")#
+#
+# testing significance for manual:#
+wilcox.test(data$manindex ~ data$label)#
+#pvalue = 0.04871#
+# Plot auto#
+ggplot(data, aes(x = label, y = autoindex, color = label)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw()#
+ggsave("../../Figures/Fig5/autoindex_youngold.pdf")#
+#
+# testing significance for manual:#
+wilcox.test(data$autoindex ~ data$label)#
+#pvalue = 0.004947#
+ggplot(data, aes(x = manindex, y= autoindex)) + geom_point() + geom_smooth(method = "lm", fill = NA) + theme_bw()#
+ggsave("../../Figures/Fig5/autoVsmanindexscores.pdf")
+########################################
+# startle response#
+########################################
+sdata = read.table("../../Data/Training/filteredstartle.csv", sep = ',', header = TRUE)#
+sdata = sdata[sdata$AgeCat != "middle",]#
+sdata$AgeCat = factor(sdata$AgeCat, c("young", "old"))
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+ggplot(subsdata, aes(x = AgeCat, y = Freq, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() + coord_flip() #+ theme(legend.position="none")
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() +  theme(legend.position="none")
+tsubsdata
+subsdata
+tsubsdata = data.table(subsdata)
+library(ggplot2)#
+library(gridExtra)
+tsubsdata = data.table(subsdata)
+data.table
+? data.table
+?? data.table
+library("data.table")
+library(data.table)
+# plot proportion startle#
+pd <- position_jitter(width = 0.1)#
+subsdata = sdata[,c(1,3)]#
+subsdata = as.data.frame(table(subsdata)) #
+tsubsdata = data.table(subsdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = startleResponse)) + geom_bar(stat= "identity", position = 'stack', width = .5)  + theme_bw() +  theme(legend.position="none")
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryStartle.pdf")
+# plot VidWhereStartled#
+sdata = sdata[sdata$VidWhereStartled != "NA", ]#
+sdata = sdata[complete.cases(sdata), ]#
+sdata$VidWhereStartled  = sdata$VidWhereStartled + 1#
+ggplot(sdata, aes(x = AgeCat, y = VidWhereStartled, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherestartled.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(sdata$VidWhereStartled~ sdata$AgeCat)#
+#pvalue = 1#
+#
+# summary stats#
+summary(sdata)#
+sdata = sdata[sdata$startleResponse == 1,]#
+mean(sdata[sdata$AgeCat == "young", c("VidWhereStartled")])#
+mean(sdata[sdata$AgeCat == "old", c("VidWhereStartled")])
+########################################
+# movement response#
+########################################
+mdata = read.table("../../Data/Training/filteredcame2top.csv", sep = ',', header = TRUE)#
+mdata = mdata[mdata$AgeCat != "middle",]#
+mdata$AgeCat = factor(mdata$AgeCat, c("young", "old"))#
+#
+# plot proportion that came to top with food, horizontal bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+ggplot(submdata, aes(x = AgeCat, y = Freq, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + coord_flip()+ theme(legend.position="none")#
+ggsave("../../Figures/Fig5/binaryCame2topwithfood.pdf")#
+#
+# plot proportion that came to top with food, vertical bar#
+pd <- position_jitter(width = 0.1)#
+submdata = mdata[,c(1,3)]#
+submdata = as.data.frame(table(submdata)) #
+tsubsdata = data.table(submdata)#
+tsubsdata[, percen := sum(Freq), by=list(AgeCat)]#
+tsubsdata[, percen := Freq/percen]#
+ggplot(tsubsdata, aes(x = AgeCat, y = percen, fill = Came2topwithfood)) + geom_bar(stat= "identity", position = 'dodge', width = .5)  + theme_bw() + theme(legend.position="none")#
+ggsave("../../Figures/Fig5/vertical_Proportion_binaryCame2topwithfood.pdf")#
+# plot VidWhereCame2Top with food#
+mdata = mdata[mdata$VidWhereCame2Top != "NA", ]#
+mdata = mdata[complete.cases(mdata), ]#
+mdata$VidWhereCame2Top  = mdata$VidWhereCame2Top + 1#
+ggplot(mdata, aes(x = AgeCat, y = VidWhereCame2Top, color = AgeCat)) +  geom_boxplot()  +geom_point(position = pd) + theme_bw() #
+ggsave("../../Figures/Fig5/vidwherecame2top.pdf")#
+#
+# testing significance for manual:#
+#wilcox.test(mdata$VidWhereCame2Top ~ mdata$AgeCat)#
+#pvalue = 0.2262#
+#
+summary(mdata)#
+mean(mdata[mdata $AgeCat == "young", c("VidWhereCame2Top")])#
+mean(mdata[mdata $AgeCat == "old", c("VidWhereCame2Top")])#
+########################################
+# Compass/Rose Plot#
+# https://github.com/philmassie/20160630_ggplot2_wind_rose#
+########################################
+# first, individual#
+library(ggplot2)#
+#
+data1= read.table("../../Data/Training/bins_first5_f3.csv", sep = ',', header = FALSE)#
+data2= read.table("../../Data/Training/bins_14to19_f3.csv", sep = ',', header = FALSE)#
+#
+ggplot(data=data1,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,30)#
+#
+ggsave("../../Figures/Fig5/First5trainingsf3_CompassPlot.pdf")#
+ggplot(data=data2,aes(x=V1,y=V2))+geom_bar(stat="identity") +coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("") + ylim(0,30)#
+ggsave("../../Figures/Fig5/Later14to19trainingsf3_CompassPlot.pdf")#
+#
+# now, aggregated data#
+ypre= read.table("../../Data/Training/young_pretrain.csv", sep = ',', header = FALSE)#
+ypost = read.table("../../Data/Training/young_posttrain.csv", sep = ',', header = FALSE)#
+opre= read.table("../../Data/Training/old_pretrain.csv", sep = ',', header = FALSE)#
+opost = read.table("../../Data/Training/old_posttrain.csv", sep = ',', header = FALSE)#
+#
+p1 = ggplot(data=ypre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p2 = ggplot(data=ypost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p3 = ggplot(data=opre,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p4 = ggplot(data=opost,aes(x=V1,y=V2))+geom_bar(stat="identity")+ coord_polar(start = -1.79, direction = -1)+xlab("")+ylab("")+ ylim(0,3) + theme(axis.text = element_blank(), axis.ticks = element_blank()) #
+#
+p = grid.arrange(p1,p2,p3,p4, nrow = 1)#
+#
+ggsave("../../Figures/Fig5/young_old_pretrain_posttrain_CompassPlot.pdf", p)

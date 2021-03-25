@@ -1,0 +1,77 @@
+library(ggplot2)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/cnb_feeder_counts.csv", sep = "")
+df30days = read.table(readin, sep= ",")
+df30days
+df = read.table(readin, sep= ",")
+names(df)
+df
+df = read.table(readin, sep= ",", header = True)
+df = read.table(readin, sep= ",", header = true)
+df = read.table(readin, sep= ",", header = TRUE)
+df
+names(df)
+p <- ggplot(data = freqd,aes(df$deviation)) + geom_histogram() +  theme_classic(base_size=16)
+p <- ggplot(data = df,aes(df$deviation)) + geom_histogram() +  theme_classic(base_size=16)
+p
+df[df$deviation => 0,]
+df[df$deviation >= 0,]
+df
+dims(df)
+dim(df)
+df = df[df$deviation >= 0,]
+dim(df)
+p <- ggplot(data = df,aes(df$deviation)) + geom_histogram() +  theme_classic(base_size=16)
+p
+p <- ggplot(data = df,aes(df$deviation)) + geom_histogram() +  theme_classic(base_size=16)
+p
+saveout = paste("~/Dropbox/" , dirout , "/Figures/SuppFig1/SuppFig1A.pdf", sep ="")
+ggsave(saveout)
+library(ggplot2)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/cnb_feeder_counts.csv", sep = "")
+df = read.table(readin, sep= ",", header = TRUE)#
+df = df[df$deviation >= 0,]
+df
+summary(df[df$deviation])
+summary(df$deviation)
+describe(df$deviation)
+summary(as.factor(df$deviation))
+dims(df$deviation)
+dim(df$deviation)
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/cnb_feeder_counts.csv", sep = "")#
+df = read.table(readin, sep= ",", header = TRUE)#
+df = df[df$deviation >= 0,]
+df$deviation
+dim(df$deviation)
+df$deviation
+summary(df$deviation)
+length(df$deviation)
+total = length(df$deviation)
+total
+percent
+summary(as.factor(df$deviation))
+vals = summary(as.factor(df$deviation))
+vals
+percent = vals/total
+percent
+library(ggplot2)#
+#
+dirout = "McKay_CodeChecking"
+readin = paste("~/Dropbox/" , dirout , "/Data/Table S10.csv", sep = "")#
+df = read.table(readin, sep= ",", header = TRUE)#
+df = df[df$deviation >= 0,]#
+#
+numfeeders = length(unique(df$feeder))#
+# loading in deviations from ideal (3 or 7) feedings#
+p <- ggplot(data = df,aes(df$deviation)) + geom_histogram() +  theme_classic(base_size=16)#
+saveout = paste("~/Dropbox/" , dirout , "/Figures/SuppFig1/SuppFig1A.pdf", sep ="")#
+ggsave(saveout)#
+#
+# create table#
+total = length(df$deviation)#
+# getting counts#
+vals = summary(as.factor(df$deviation))#
+percent = vals/total

@@ -1,0 +1,1400 @@
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]#
+#
+##########################
+# Plotting
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+summary(dfm2[dfm2$FeedingScheme == "DR",])#
+summary(dfm2[dfm2$FeedingScheme == "AL",])
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dff2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+summary(dff2[dff2 $FeedingScheme == "DR",])#
+summary(dff2[dff2 $FeedingScheme == "AL",])
+flexsurvreg
+library("survival")
+flexsurvreg
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$
+)
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm1, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)
+summary(dfm1[dfm1$FeedingScheme == "DR",])
+summary(dfm1[dfm1$FeedingScheme == "AL",])
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+dev.off()
+dfm1
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]
+df1$FeedingScheme = as.factor(df1$FeedingScheme)
+df1$Sex = as.factor(df1$Sex)
+df1
+summary(df1)
+summary(df1$HatchDate)
+df1$HatchDate
+df1 = df1[df1$HatchDate != "2019-04-05",]
+df1$HatchDate = as.factor(df1$HatchDate)
+dfm1 = df1[df1$Sex == "m",]
+dff1 = df1[df1$Sex == "f",]
+summary(dfm1[dfm1$FeedingScheme == "DR",])
+summary(dfm1[dfm1$FeedingScheme == "AL",])
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+summary(dfm1[dfm1$FeedingScheme == "DR",])
+summary(dfm1[dfm1$FeedingScheme == "AL",])
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)
+levels(factor(dfm2$FeedingScheme))
+summary(dfm2[dfm2$FeedingScheme == "DR",])
+summary(dfm2[dfm2$FeedingScheme == "AL",])
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+dfm2$FeedingScheme
+levels(factor(dff2$FeedingScheme))
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dff2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+legend(#
+  "topright",#
+  legend=levels(factor(dff2$FeedingScheme)),#
+  col= seq_along(levels(factor(dff2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+summary(dff2[dff2 $FeedingScheme == "DR",])#
+summary(dff2[dff2 $FeedingScheme == "AL",])
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df2AL), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df2AL$Sex)),#
+  col= seq_along(levels(factor(df2AL $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+summary(df2AL[df2AL $Sex == "m",])#
+summary(df2AL[df2AL $Sex == "f",])
+summary(df2DR[df2DR$Sex == "m",])#
+summary(df2DR[df2DR$Sex == "f",])
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df2DR), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df2DR $Sex)),#
+  col= seq_along(levels(factor(df2DR $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+summary(dfm1[dfm1$FeedingScheme == "DR",])#
+summary(dfm1[dfm1$FeedingScheme == "AL",])
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate, data = dfm1, rho = 1)
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+lrank
+survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate, data = dfm1, rho = 1)
+pval
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate, data = dfm1, rho = 1)
+lrank
+summary(lrank)
+describe(lrank)
+lrank
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm1, rho = 1)
+lrank
+h1 = dfm1[dfm1$HatchDate == "2019-4-12",]
+h1
+dfm1
+dfm1$HatchDate
+h2 = dfm1[dfm1$HatchDate == "2019-04-17",]
+h1 = dfm1[dfm1$HatchDate == "2019-04-12",]
+h1
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = h1, rho = 1)
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = h2, rho = 1)
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = h1, rho = 1)
+lrank
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = h1, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = h2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm1, rho = 1)#
+#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = h1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = h2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)
+legend(#
+  "topright",#
+  legend=levels(factor(dfm1$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm1$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+# stats#
+summary(dfm1[dfm1$FeedingScheme == "DR",])#
+summary(dfm1[dfm1$FeedingScheme == "AL",])#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm1$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm1$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dff1, rho = 1)
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+summary(dff1[dff1 $FeedingScheme == "DR",])
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohortFemaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dff1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+legend(#
+  "topright",#
+  legend=levels(factor(dff1$FeedingScheme)),#
+  col= seq_along(levels(factor(dff1$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1AL, rho = 1)
+df1AL = df1[df1$FeedingScheme == "AL",]
+df1AL = df1AL[df1AL$Sex != "" ,]
+df1DR = df1[df1$FeedingScheme == "DR",]
+df1DR = df1DR[df1DR $Sex != "" ,]
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df2AL, rho = 1)#
+pval = pchisq(lrank$chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohort_MalesVsFemales_ALonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+# stats#
+summary(df1AL[df1AL $Sex == "m",])#
+summary(df1AL[df1AL $Sex == "f",])#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1AL), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df1AL$Sex)),#
+  col= seq_along(levels(factor(df1AL $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1DR, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohort_MalesVsFemales_DRonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)
+summary(df1DR[df1DR$Sex == "m",])#
+summary(df1DR[df1DR$Sex == "f",])
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1DR), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250),
+legend(#
+  "topright",#
+  legend=levels(factor(df1DR $Sex)),#
+  col= seq_along(levels(factor(df1DR $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1DR), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df1DR $Sex)),#
+  col= seq_along(levels(factor(df1DR $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')
+coxph
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = df1)
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex, data = df1)
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate, data = df1)
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df1)
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate, data = df1)
+levels(df1$Sex)
+levels(df1$FeedingScheme)
+relevel
+?relevel
+relevel(df1$Sex, c("m", "f"))
+relevel(df1$Sex, c("f"))
+relevel(df1$Sex, "f")
+relevel(df1$Sex, "m")
+df1$Sex = relevel(df1$Sex, "f")
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate, data = df1)
+df1$Sex = relevel(df1$Sex, "m")
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate, data = df1)
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex, data = df1)
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1DR, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1AL, rho = 1)#
+pval = pchisq(lrank$chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohort_MalesVsFemales_ALonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+# stats#
+summary(df1AL[df1AL $Sex == "m",])#
+summary(df1AL[df1AL $Sex == "f",])#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1AL), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df1AL$Sex)),#
+  col= seq_along(levels(factor(df1AL $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+dfm1
+dfm2
+dfm
+names
+names(dfm1)
+dfm1[c("Number"),]
+dfm1[,c("Number")]
+dfm1[,c("Number", "Parents")]
+names(dfm1)
+dfm1[,c("Number", "HatchDate", "Lifespan_days", "Observed", "FeedingScheme")]
+a = c("Number", "HatchDate", "Lifespan_days", "Observed", "FeedingScheme")
+dfm2[,a]
+rbind(dfm1[,a], dfm2[,a])
+dfm = rbind(dfm1[,a], dfm2[,a])
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm, rho = 1)
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)
+pval
+dfm
+lrank
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/BothCohortsMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+# stats#
+summary(dfm2[dfm2$FeedingScheme == "DR",])#
+summary(dfm2[dfm2$FeedingScheme == "AL",])#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/cnb_feeder_counts.csv", sep = "")#
+df = read.table(readin, sep= ",", header = TRUE)#
+df = df[df$deviation >= 0,]
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/cnb_feeder_counts.csv", sep = "")
+df = read.table(readin, sep= ",", header = TRUE)
+readin = paste("~/Dropbox/" , dirout , "/Data/FeederSpecs_CNB/SuppFig1.csv", sep = "")
+df = read.table(readin, sep= ",", header = TRUE)
+readin = paste("~/Dropbox/" , dirout , "/Data/SuppFig1.csv", sep = "")
+df = read.table(readin, sep= ",", header = TRUE)
+df = df[df$deviation >= 0,]
+df
+dim(df)
+names(df)
+numfeeders = unique(df$feeder)
+numfeeders
+numfeeders = len(unique(df$feeder))
+numfeeders = length(unique(df$feeder))
+numfeeders
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+getstats(dfm2, "DR", "AL", "Lifespan_days")
+getstats <- function(dataset, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset$FeedingScheme == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset$FeedingScheme == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset$FeedingScheme == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset$FeedingScheme == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+getstats(dfm2, "DR", "AL", "Lifespan_days")
+summary(dfm2[dfm2$FeedingScheme == "DR",])
+getstats(dff2, "DR", "AL", "Lifespan_days")
+dataset = dff2
+cond1 = "m"
+cond2 = "f"
+stat1 = "Lifespan_days"
+cat12 = "Sex"
+dim(dataset[dataset$cat12 == cond1, ])[1]
+dim(dataset[dataset$Sex == cond1, ])[1]
+cond1
+dataset = df2AL
+dim(dataset[dataset$Sex == cond1, ])[1]
+dim(dataset[dataset$cat12 == cond1, ])[1]
+dim(dataset[dataset[,c(cat12)] == cond1, ])[1]
+getstats <- function(dataset, cat12, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset[,c(cat12)] == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset[,c(cat12)] == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+getstats(df2AL, "Sex", "m", "f", "Lifespan_days")
+getstats(dfm1, "FeedingScheme", "AL", "DR", "Lifespan_days")
+# testing using cox proportional hazards model on first cohort with baseline being male AL#
+df1$Sex = relevel(df1$Sex, "m")#
+#
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex, data = df1)#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm1, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm1, "FeedingScheme", "AL", "DR", "Lifespan_days")
+getstats(dff1, "FeedingScheme", "AL", "DR", "Lifespan_days")
+getstats(df1AL, "Sex", "m", "f", "Lifespan_days")
+getstats(df1DR, "Sex", "m", "f", "Lifespan_days")
+getstats(dfm, "FeedingScheme", "AL", "DR", "Lifespan_days")
+a = c("Number", "HatchDate", "Lifespan_days", "Observed", "FeedingScheme")#
+dfm = rbind(dfm1[,a], dfm2[,a])#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm, "FeedingScheme", "AL", "DR", "Lifespan_days")
+dirout = "McKay_CodeChecking"
+getstats <- function(dataset, cat12, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset[,c(cat12)] == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset[,c(cat12)] == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+# just one of these animals#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+# these are all AL, so remove since confounded#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm2, "FeedingScheme", "DR", "AL", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/SecondCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+library(ggplot2)#
+library(survival)#
+library(rms)#
+options(stringsAsFactors = FALSE)
+dirout = "McKay_CodeChecking"
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm2, "FeedingScheme", "DR", "AL", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/SecondCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+dfm2
+library(ggplot2)#
+library(survival)#
+library(rms)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "McKay_CodeChecking"#
+#
+##########################
+# Functions#
+##########################
+#
+getstats <- function(dataset, cat12, cond1, cond2, stat1) {#
+x1 = dim(dataset[dataset[,c(cat12)] == cond1, ])[1]#
+print(paste("Number", cond1, ":", x1 ))#
+y1 = dim(dataset[dataset[,c(cat12)] == cond2, ])[1]#
+print(paste("Number", cond2, ":", y1 ))#
+	x2 = mean(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Mean", cond1, ":", x2 ))#
+y2 = mean(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Mean", cond2, ":", y2 ))#
+x3 =  median(dataset[dataset[,c(cat12)] == cond1, c(stat1)])#
+print(paste("Median", cond1, ":", x3 ))#
+y3 = median(dataset[dataset[,c(cat12)] == cond2, c(stat1)])#
+print(paste("Median", cond2, ":", y3 ))#
+}
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+df1
+df2
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+# just one of these animals#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+# these are all AL, so remove since confounded#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df1
+df2DR
+df1
+df2
+df1
+dfm1
+dff1
+df1AL
+df1DR
+df2AL
+df2AL
+df2
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+df1
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+# just one of these animals, remove hatch date#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+# these are all AL, so remove since confounded#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)
+dfm1 = df1[df1$Sex == "m",]
+dfm2 = df2[df2$Sex == "m",]
+dfm1
+dfm2
+df2
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+df1
+df2
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+# just one of these animals, remove hatch date#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+# these are all AL, so remove since confounded#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 1#
+df1AL = df1[df1$FeedingScheme == "AL",]#
+df1AL = df1AL[df1AL$Sex != "" ,]#
+df1DR = df1[df1$FeedingScheme == "DR",]#
+df1DR = df1DR[df1DR $Sex != "" ,]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2DR
+df2AL
+dfm1
+dff1
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm2, "FeedingScheme", "DR", "AL", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/SecondCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm2$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()
+##########################
+# females, second cohort#
+##########################
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dff2, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dff2, "FeedingScheme", "DR", "AL", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/SecondCohortFemaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dff2), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+legend(#
+  "topright",#
+  legend=levels(factor(dff2$FeedingScheme)),#
+  col= seq_along(levels(factor(dff2$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+#
+##########################
+# females vs males, AL, second cohort#
+##########################
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df2AL, rho = 1)#
+pval = pchisq(lrank$chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(df2AL, "Sex", "m", "f", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/MalesVsFemales_secondcohortALonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df2AL), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df2AL$Sex)),#
+  col= seq_along(levels(factor(df2AL $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df2DR, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/MalesVsFemales_secondcohortDRonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+# stats#
+summary(df2DR[df2DR$Sex == "m",])#
+summary(df2DR[df2DR$Sex == "f",])#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df2DR), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df2DR $Sex)),#
+  col= seq_along(levels(factor(df2DR $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+##########################
+# Gompertz Curve fitting (only second cohort, males AL vs DR for now)#
+##########################
+#
+# using flexsurv to test gompertz#
+library(flexsurv)#
+#
+# need to make columns match between#
+dfm1 = dfm1[,names(dfm1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "Lifespan_3weeks")]#
+dfm2 = dfm2[,names(dfm2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "Lifespan_3weeks")]#
+dfm = rbind(dfm1, dfm2)#
+#
+dfmal = dfm[dfm$FeedingScheme == "AL",]#
+dfmdr = dfm[dfm$FeedingScheme == "DR",]#
+AL <- flexsurvreg(Surv(Lifespan_3weeks, Observed) ~ 1, data = dfmal, dist="gompertz")#
+#
+DR <- flexsurvreg(Surv(Lifespan_3weeks, Observed) ~ 1, data = dfmdr, dist="gompertz")#
+#
+# based upon this, need to export these back for plotting in julia:#
+# 6.15.20#
+# shape/RoA: AL1 = 0.3388 > DR = 0.1457#
+# rate/IMR/frailty: AL1 = 0.0385 < DR = 0.0557#
+write.table(dfmal,file = "male_al.csv", sep= ",")#
+write.table(dfmdr,file = "male_dr.csv", sep= ",")#
+##########################
+# Supplmentary, first cohort#
+##########################
+#
+# testing using cox proportional hazards model on first cohort with baseline being male AL#
+df1$Sex = relevel(df1$Sex, "m")#
+#
+coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex, data = df1)#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm1, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm1, "FeedingScheme", "AL", "DR", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohortMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm1$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm1$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dff1, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dff1, "FeedingScheme", "AL", "DR", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohortFemaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dff1), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+legend(#
+  "topright",#
+  legend=levels(factor(dff1$FeedingScheme)),#
+  col= seq_along(levels(factor(dff1$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1AL, rho = 1)#
+pval = pchisq(lrank$chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(df1AL, "Sex", "m", "f", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohort_MalesVsFemales_ALonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1AL), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df1AL$Sex)),#
+  col= seq_along(levels(factor(df1AL $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ Sex, data = df1DR, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(df1DR, "Sex", "m", "f", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/FirstCohort_MalesVsFemales_DRonly.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+#
+plot(survfit(Surv(Lifespan_days, Observed)~ Sex,data =df1DR), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(df1DR $Sex)),#
+  col= seq_along(levels(factor(df1DR $Sex))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()#
+##########################
+# Supplmentary, both cohorts#
+##########################
+a = c("Number", "HatchDate", "Lifespan_days", "Observed", "FeedingScheme")#
+dfm = rbind(dfm1[,a], dfm2[,a])#
+#
+lrank = survdiff(Surv(Lifespan_days, Observed) ~ FeedingScheme, data = dfm, rho = 1)#
+pval = pchisq(lrank $chisq, length(lrank$n)-1, lower.tail = FALSE)#
+#
+getstats(dfm, "FeedingScheme", "AL", "DR", "Lifespan_days")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig4/BothCohortsMaleFeedingDRvsAL.pdf", sep = "")#
+pdf(file = saveout, compress = FALSE)#
+plot(survfit(Surv(Lifespan_days, Observed)~ FeedingScheme,data = dfm), #
+	xlab = "Days",#
+	ylab = "Survival"#
+	,col = 1:N,#
+	lwd = 2.6666,#
+	cex.lab = 1.66,#
+	cex.axis = 1.33,#
+	main = pval#
+	)#
+	#xlim = c(0,250), #
+legend(#
+  "topright",#
+  legend=levels(factor(dfm$FeedingScheme)),#
+  col= seq_along(levels(factor(dfm$FeedingScheme))),#
+  lty = 1,#
+  horiz=FALSE,#
+  bty='n')#
+#
+dev.off()

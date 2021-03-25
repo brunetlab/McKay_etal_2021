@@ -1,0 +1,354 @@
+library(ggplot2)
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+df
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+df
+library(ggplot2)#
+#
+#df = read.table("FeedingReproducibility2.20.19data7.31.19analysis.csv", header = TRUE, sep = ",")#
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()#
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+p <- p + geom_bar(aes(y = precision), stat="identity", shape = "_", size = 15)
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+#p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_bar(aes(y = precision), stat="identity", shape = "_", size = 15)#
+#p <- p + geom_point(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+library(ggplot2)
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+devf$category
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+devf
+p <- ggplot(df, aes(x = category))
+p <- ggplot(devf, aes(x = category))
+p <- p + geom_bar(aes(y = deviation), stat="identity", shape = "_", size = 15)
+devf
+p <- p + geom_point(aes(y = deviation), stat="identity", shape = "_", size = 15)
+p
+p <- p + geom_point(aes(y = deviation), stat="identity", size = 12)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_point(aes(y = deviation), stat="identity", size = 12)
+p
+p <- p + geom_point(aes(y = deviation), stat="identity", size = 1)
+p'
+p
+d
+=
+sl1
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_point(aes(y = deviation), stat="identity", size = 1)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_point(aes(y = deviation), stat="identity", size = 1)#
+#
+p <- p + theme_classic()#
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+p <- p + geom_jitter(aes(y = deviation), stat="identity", size = 1)
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation), stat="identity", size = 1)#
+#
+p <- p + theme_classic()
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, group = category), stat="identity", size = 1)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1)
+p
+p <- p + geom_boxplot(aes(y = deviation, color = category), stat="identity", size = 1)
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = .5)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.25)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15)
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()
+p <- p+ geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category)) #
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()#
+p <- p+ geom_boxplot(aes(y = deviation, color = category))
+p
+p <- p+ geom_boxplot(y = deviation, color = category)
+p <- p+ geom_boxplot(aes(y = deviation, color = category), stat = "identity")
+p <- ggplot(devf, aes(x = category)) + geom_boxplot()
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category, y = deviation)) + geom_boxplot()
+p <- p + geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category, y = deviation)) + geom_boxplot()+ geom_jitter(aes(y = deviation, color = category), stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- p + theme_classic()
+p
+p <- ggplot(devf, aes(x = category, y = deviation)) + geom_boxplot()+ geom_jitter( stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category)) + geom_boxplot()+ geom_jitter( stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category)) + geom_boxplot(alpha= 0.5)+ geom_jitter( stat="identity", size = 1, width=0.15) + geom_boxplot()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category)) + geom_boxplot(alpha= 0.5)+ geom_jitter( stat="identity", size = 1, width=0.15) + geom_boxplot() + theme_classic()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category)) + geom_jitter( stat="identity", size = 1, width=0.15) +geom_boxplot(alpha= 0.5)+  geom_boxplot() + theme_classic()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category)) + geom_jitter( stat="identity", size = 1, width=0.15) +geom_boxplot()+ theme_classic()
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+geom_boxplot() + geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic()
+p
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+library(ggplot2)#
+#
+#df = read.table("FeedingReproducibility2.20.19data7.31.19analysis.csv", header = TRUE, sep = ",")#
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+df
+#df = read.table("FeedingReproducibility2.20.19data7.31.19analysis.csv", header = TRUE, sep = ",")#
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")#
+#
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+df
+devf
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+geom_boxplot() + geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic()
+p
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")
+devf
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic()#
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+p
+hline
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(0)
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yinterceplt = 0)
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0)
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-1,1)
+p
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.75,0.75)
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0)
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.8,0.8)
+p
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-1,1)
+p
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B.pdf")
+freqd = read.table("frequencydev.csv", header = TRUE, sep = ",")
+freqd
+freqd = read.table("frequencydev.csv", header = FALSE, sep = ",")
+summarize(freqd)
+describe(freqd)
+summary(freqd)
+dim(freqd)
+qplot(freqd$V1, geom = "histogram")
+qplot(freqd$V1, geom = "histogram") + theme_classic()
+qplot(freqd$V1, geom = "histogram") + theme_classic(base_size=16)
+ggplot(data = freqd,aes(freqd$V1)) + geom_histogram(breaks=seq(-1,6, by=1)) +  theme_classic(base_size=16)
+ggplot(data = freqd,aes(freqd$V1)) + geom_histogram(breaks=seq(-2,6, by=1)) +  theme_classic(base_size=16)
+ggplot(data = freqd,aes(freqd$V1)) + geom_histogram() +  theme_classic(base_size=16)
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2C.pdf")
+library(ggplot2)#
+#
+df = read.table("precision_confint.csv", header = TRUE, sep = ",")#
+#
+df$category = factor(df$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(df, aes(x = category)) #
+p <- p + geom_bar(aes(y = precision), stat="identity", shape = "_", size = 15)#
+p <- p + geom_errorbar(aes(y = precision, ymin = lower, ymax = upper), width = 0.2)#
+p <- p + theme_classic()
+p
+ggsave("$HOME/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B_precision.pdf")
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2B_precision.pdf")
+# pulling in percentage deviation from the mean#
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")#
+#
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.8,0.8)#
+#
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2B/Fig2BB.pdf")#
+# loading in deviations from ideal (3 or 7) feedings for 41 feeders over 2281 days worth of feedings#
+freqd = read.table("/media/ht/tb/Dropbox/KillifishFeederPaper_AndrewMcKay/Code/Fig2/frequencydev.csv", header = FALSE, sep = ",")#
+p <- ggplot(data = freqd,aes(freqd$V1)) + geom_histogram() +  theme_classic(base_size=16)#
+#geom_histogram(breaks=seq(-2,6, by=1)) #
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2C/Fig2C.pdf")
+freqd = read.table("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Code/Fig2/frequencydev.csv", header = FALSE, sep = ",")
+freqd = read.table("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Code/Fig2/frequencydeviationsforfeeders.csv", header = FALSE, sep = ",")
+freqd = read.table("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Data/frequencydeviationsforfeeders.csv", header = FALSE, sep = ",")
+# loading in deviations from ideal (3 or 7) feedings for 41 feeders over 2281 days worth of feedings#
+freqd = read.table("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Data/frequencydeviationsforfeeders.csv", header = FALSE, sep = ",")#
+p <- ggplot(data = freqd,aes(freqd$V1)) + geom_histogram() +  theme_classic(base_size=16)#
+ggsave("~/Dropbox/KillifishFeederPaper_AndrewMcKay/Figures/Fig2/Fig2C/Fig2C.pdf")
+library(ggplot2)#
+#
+dirout = "McKay_CodeChecking"
+freqd = read.table("~/Dropbox/" + dirout + "/Data/frequencydeviationsforfeeders.csv", header = FALSE, sep = ",")#
+p <- ggplot(data = freqd,aes(freqd$V1)) + geom_histogram() +  theme_classic(base_size=16)
+freqd = read.table("~/Dropbox/" + dirout + "/Data/frequencydeviationsforfeeders.csv", header = FALSE, sep = ",")
+library(ggplot2)#
+#
+dirout = "McKay_CodeChecking"
+dirout = "KillifishFeederPaper_AndrewMcKay"
+# pulling in percentage deviation from the mean#
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")#
+#
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.8,0.8)
+p
+devf
+readin = paste("~/Dropbox/" , dirout , "/Data/onefeeder30days.csv", sep = "")#
+df30days = read.table(readin, sep= ",")#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig2/Fig2A.pdf", sep ="")#
+pdf(file = saveout, compress = FALSE)#
+#
+p <- ggplot(df30days)#
+p + geom_point(aes(V1, V2)) + ylim(0,8) +  theme_classic(base_size = 16)
+p
+library(ggplot2)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+readin = paste("~/Dropbox/" , dirout , "/Data/onefeeder30days.csv", sep = "")
+df30days = read.table(readin, sep= ",")
+p <- ggplot(df30days)#
+p + geom_point(aes(V1, V2)) + ylim(0,8) +  theme_classic(base_size = 16)
+p
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig2/Fig2A.pdf", sep ="")#
+pdf(file = saveout, compress = FALSE)#
+#
+p <- ggplot(df30days)#
+p + geom_point(aes(V1, V2)) + ylim(0,8) +  theme_classic(base_size = 16)#
+#
+dev.off()
+readin = paste("~/Dropbox/" , dirout , "/Data/frequencydeviationsforfeeders.csv", sep = "")
+freqd = read.table(readin, header = FALSE, sep = ",")
+p <- ggplot(data = freqd,aes(freqd$V1)) + geom_histogram() +  theme_classic(base_size=16)
+p
+freqd
+library(ggplot2)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+readin = paste("~/Dropbox/" , dirout , "/Data/Fig2A.csv", sep = "")#
+df30days = read.table(readin, sep= ",")
+df30days
+df30days = read.table(readin, sep= ",", header = TRUE)
+df30days
+p <- ggplot(df30days)#
+p + geom_point(aes(Day, NumberTimesFed)) + ylim(0,8) +  theme_classic(base_size = 16)
+readin = paste("~/Dropbox/" , dirout , "/Data/Fig2B.csv", sep = "")
+freqd = read.table(readin, header = FALSE, sep = ",")
+freqd
+freqd = read.table(readin, header = TRUE, sep = ",")
+freqd
+names(freqd)
+p <- ggplot(data = freqd,aes(freqd$MissedFeedings)) + geom_histogram() +  theme_classic(base_size=16)
+p
+dim(freqd)
+2279
+2279/41
+2279/30
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+devf$category
+devf
+readin = paste("~/Dropbox/" , dirout , "/Data/Fig2A.csv", sep = "")#
+df30days = read.table(readin, sep= ",", header = TRUE)
+p <- ggplot(df30days)#
+p + geom_point(aes(Day, NumberTimesFed)) + ylim(0,8) +  theme_classic(base_size = 16)
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.8,0.8)
+p
+readin = paste("~/Dropbox/" , dirout , "/Data/Table S2.csv", sep = "")
+dirout = "KillifishFeederPaper_AndrewMcKay"
+readin = paste("~/Dropbox/" , dirout , "/Data/Table S1.csv", sep = "")
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")
+library(ggplot2)#
+#
+dirout = "McKay_CodeChecking"#
+#
+readin = paste("~/Dropbox/" , dirout , "/Data/Table S1.csv", sep = "")#
+df30days = read.table(readin, sep= ",", header = TRUE)#
+#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig2/Fig2A.pdf", sep ="")#
+pdf(file = saveout, compress = FALSE)#
+#
+p <- ggplot(df30days)#
+p + geom_point(aes(Day, NumberTimesFed)) + ylim(0,8) +  theme_classic(base_size = 16)#
+#
+dev.off()#
+# loading in deviations from ideal (3 or 7) feedings for 41 feeders over 2281 days worth of feedings#
+readin = paste("~/Dropbox/" , dirout , "/Data/Table S2.csv", sep = "")#
+freqd = read.table(readin, header = TRUE, sep = ",")#
+p <- ggplot(data = freqd,aes(freqd$MissedFeedings)) + geom_histogram() +  theme_classic(base_size=16)#
+saveout = paste("~/Dropbox/" , dirout , "/Figures/Fig2/Fig2B.pdf", sep ="")#
+ggsave(saveout)#
+# pulling in percentage deviation from the mean#
+devf = read.table("rawdeviations_percent.csv", header = TRUE, sep = ",")#
+#
+devf$category = factor(devf$category, levels = c("Multiple People", "Single Person", "Automatic Feeder", "Single Automatic Feeder"))#
+#
+p <- ggplot(devf, aes(x = category, y = deviation, color = category))+ geom_jitter( stat="identity", size = 1, width=0.15) + theme_classic() + geom_hline(yintercept = 0) + ylim(-0.8,0.8)#
+saveout = paste("~/Dropbox/", dirout, "/Figures/Fig2/Fig2D.pdf", sep ="")#
+ggsave(saveout)

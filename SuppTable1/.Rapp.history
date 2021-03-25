@@ -1,0 +1,1023 @@
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)
+df2
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate + Sex + Sex:FeedingScheme , data = df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df2
+df2$FeedingScheme
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))
+df2$FeedingScheme
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 1))
+df2$FeedingScheme
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))
+df2$FeedingScheme
+FeedingScheme
+within
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+df2$FeedingScheme
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df2$Sex = relevel(df2$Sex, "m")
+df2$Sex
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + HatchDate + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df2
+summary(dfm1)
+summary(df2)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)
+summary(df2)
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)
+summary(df2)
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df1 = df1[df1$HatchDate != "2019-04-05",]
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+df
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]
+df = rbind(df1, df2)
+df
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)
+summary(coxfit_df2)
+df$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]#
+##########################
+# Testing for interaction terms#
+##########################
+#
+# need to make columns match between#
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df = rbind(df1, df2)
+df$FeedingScheme = relevel(df$FeedingScheme, "AL")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+df$FeedingScheme
+df$FeedingScheme = relevel(df$FeedingScheme, "DR")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+df$FeedingScheme = relevel(df$FeedingScheme, "DR")#
+df$Sex = relevel(df$Sex, "f")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+df$Sex = relevel(df$Sex, "m")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+df$FeedingScheme = relevel(df$FeedingScheme, "AL")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df)#
+summary(coxfit_df2)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+summary(df2)
+df$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")
+df$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+df2$Sex = relevel(df2$Sex, "m")
+summary(df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+survreg
+?survreg
+?strata
+s = survreg((Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+s = survreg((Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")
+summary(s)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+summary(df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + Sex:FeedingScheme , data = df2)#
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme , data = df2)
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme + Sex:HatchDate, data = df2)
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme + FeedingScheme:HatchDate, data = df2)
+summary(coxfit_df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+df2$Lifespan_days
+max(df2$Lifespan_days)
+summary(df2)
+df2 = df2[df2$Lifespan_days < 220, ]
+summary(df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+df2 = df2[df2$Lifespan_days < 210, ]
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+#df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2 = df2[df2$Lifespan_days < 220, ]
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+summary(df2)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+df2 = df2[df2$Lifespan_days < 220, ]
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+summary(df2)
+df2 = df2[df2$Lifespan_days < 220, ]
+summary(df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+df2
+df2[df2$Lifespan_days < 220, ]
+df2[df2$Lifespan_days >220, ]
+summary(df2)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+summary(df2)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2#
+#
+# Loading data#
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)#
+df1 = read.table("firstlifespandata.csv", sep = ',', header = TRUE)
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2
+df2 = read.table("lifespandata.csv", sep = ',', header = TRUE)
+df2
+# Need to get rid of two conditions I didn't end up using#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]
+df2$FeedingScheme = as.factor(df2$FeedingScheme)
+df2 = df2[df2$Sex != "",]
+df2$Sex = as.factor(df2$Sex)
+df2
+summary(df2$HatchDate)
+df2 = df2[df2$HatchDate != "2019-10-09", ]
+df2$HatchDate = as.factor(df2$HatchDate)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)
+summary(coxfit_df2)
+df2$Sex = relevel(df2$Sex, "m")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)
+summary(coxfit_df2)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)#
+#
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")
+df2$Sex = relevel(df2$Sex, "f")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+? survreg
+#https://www.r-bloggers.com/examples-using-r-randomized-block-design/#
+#
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+# need to make columns match between#
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df = rbind(df1, df2)#
+#
+# relevel on female, AL#
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)#
+#
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+library(finalfit)
+install.packages("finalfit")
+library(finalfit)
+data(colon_s)
+s
+# need to make columns match between#
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df = rbind(df1, df2)#
+#
+# relevel on female, AL#
+df2$FeedingScheme = relevel(df2$FeedingScheme, "DR")#
+df2$Sex = relevel(df2$Sex, "f")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)#
+#
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+s
+summary(s)
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+library(ggplot2)#
+library(survival)#
+library(rms)#
+#library(RColorBrewer)#
+#https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html#
+#library(qwraps2)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "KillifishFeederPaper_AndrewMcKay"
+N= 2#
+#
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Need to get rid of two conditions I didn't end up using#
+df1 = df1[df1$FeedingScheme != "comp",]#
+df1 = df1[df1$FeedingScheme != "52split",]#
+df2 = df2[df2$FeedingScheme != "comp",]#
+df2 = df2[df2$FeedingScheme != "52split",]#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+# need to make columns match between#
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df = rbind(df1, df2)
+# relevel on female, AL#
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)
+library(ggplot2)#
+library(survival)#
+library(rms)#
+options(stringsAsFactors = FALSE)
+library(ggplot2)#
+library(survival)#
+library(rms)#
+options(stringsAsFactors = FALSE)#
+#
+dirout = "McKay_CodeChecking"#
+#
+##########################
+# Organizing and Cleaning Data#
+##########################
+#
+N= 2
+# Loading data (NOTE: need to run the code in Code/Fig4 first)#
+df2 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/lifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+df1 = read.table(paste("~/Dropbox/", dirout, "/Code/Fig4/firstlifespandata.csv", sep = ""), sep = ',', header = TRUE)#
+#
+# Making sure these are factors (and getting rid of comp/52split levels)#
+df1$FeedingScheme = as.factor(df1$FeedingScheme)#
+df2$FeedingScheme = as.factor(df2$FeedingScheme)#
+df2 <- within(df2, FeedingScheme <- relevel(FeedingScheme, ref = 2))#
+#
+df1$Sex = as.factor(df1$Sex)#
+df2 = df2[df2$Sex != "",]#
+df2$Sex = as.factor(df2$Sex)#
+#
+df1 = df1[df1$HatchDate != "2019-04-05",]#
+df2 = df2[df2$HatchDate != "2019-10-09", ]#
+df1$HatchDate = as.factor(df1$HatchDate)#
+df2$HatchDate = as.factor(df2$HatchDate)#
+#
+# Males only#
+dfm1 = df1[df1$Sex == "m",]#
+dfm2 = df2[df2$Sex == "m",]#
+#
+# Females only#
+dff1 = df1[df1$Sex == "f",]#
+dff2 = df2[df2$Sex == "f",]#
+#
+# AL or DR only for cohort 2#
+df2AL = df2[df2$FeedingScheme == "AL",]#
+df2AL = df2AL[df2AL$Sex != "" ,]#
+df2DR = df2[df2$FeedingScheme == "DR",]#
+df2DR = df2DR[df2DR $Sex != "" ,]
+# need to make columns match between#
+df1 = df1[,names(df1) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df2 = df2[,names(df2) %in% c("Sex", "Observed", "FeedingScheme", "Lifespan_weeks", "Lifespan_days", "HatchDate")]#
+df = rbind(df1, df2)#
+#
+# relevel on female, AL#
+df2$FeedingScheme = relevel(df2$FeedingScheme, "AL")#
+df2$Sex = relevel(df2$Sex, "m")#
+#
+coxfit_df2 = coxph(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex  + HatchDate + Sex:FeedingScheme, data = df2)#
+summary(coxfit_df2)#
+#
+s = survreg(Surv(Lifespan_days, Observed) ~ FeedingScheme + Sex + HatchDate + Sex:FeedingScheme, data = df2, dist = "weibull")#
+summary(s)
+coxfit_df2
+s
