@@ -47,7 +47,7 @@ fnt = filter(p -> p.catchlightdistance[1] != 0, mets)
 ############################################################
 ## Calculate autoscores and load manual scores for comparison
 ############################################################
-thresh = 0.19 # for distclosed
+thresh = 0.5 # for distclosed
 negplots, posplots, autoscores = getscores(fnt, thresh, plotsout, redfneg, doublefneg)
 #
 autoscores = vcat(autoscores...)
