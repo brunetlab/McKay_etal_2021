@@ -14,7 +14,7 @@ end
 
 cd(joinpath(ENV["HOME"], "McKay_etal_2021", "Fig3"))
 datadir = "yourdatafolder"
-df = DataFrame(CSV.File(joinpath(datadir, "Table S11.csv")))
+df = DataFrame(CSV.File(joinpath(datadir, "Source Data 11.csv")))
 
 # make sure all missing observed are unobserved
 df[ismissing.(df[:Observed]), :Observed] = 0
@@ -48,7 +48,7 @@ CSV.write("fig3growthrate_DR.csv", df)
 ##################################################################
 # Fig3E: growth difference for 7 times a day/AL and 12 times a day/OE
 ##################################################################
-df = DataFrame(CSV.File(joinpath(datadir, "Table S7.csv")))
+df = DataFrame(CSV.File(joinpath(datadir, "Source Data 7.csv")))
 
 # make sure observed and has measurement
 df = df[df[:Observed] .== 1,:]
@@ -67,8 +67,8 @@ CSV.write("fig3growthrate_OE.csv", df)
 ##################################################################
 # Fig3C: fertility under 7 times a day/AL and 3 times a day/DR
 ##################################################################
-df = DataFrame(CSV.File(joinpath(datadir, "Table S5.csv")))
-dfmeta = DataFrame(CSV.File(joinpath(datadir, "Table S6.csv")))
+df = DataFrame(CSV.File(joinpath(datadir, "Source Data 5.csv")))
+dfmeta = DataFrame(CSV.File(joinpath(datadir, "Source Data 6.csv")))
 
 # remove missing Uncrosseds
 df = df[.!ismissing.(df[:Uncrossed]), :]
@@ -91,8 +91,8 @@ CSV.write("fig3_DRfertility_mean.csv", dfmean)
 ##################################################################
 # Fig3F: fertility under 7 times a day/AL and 12 times a day/OE
 ##################################################################
-df = DataFrame(CSV.File(joinpath(datadir, "Table S8.csv")))
-dfmeta = DataFrame(CSV.File(joinpath(datadir, "Table S9.csv")))
+df = DataFrame(CSV.File(joinpath(datadir, "Source Data 8.csv")))
+dfmeta = DataFrame(CSV.File(joinpath(datadir, "Source Data 9.csv")))
 
 # remove missing Uncrosseds
 df = df[.!ismissing.(df[:Uncrossed]), :]

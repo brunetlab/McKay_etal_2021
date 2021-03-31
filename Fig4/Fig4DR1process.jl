@@ -10,7 +10,7 @@ end
 
 cd(joinpath(ENV["HOME"], "McKay_etal_2021", "Fig4"))
 datadir = "yourdatafolder"
-raw = DataFrame(CSV.File(joinpath(datadir, "Table S11.csv")))
+raw = DataFrame(CSV.File(joinpath(datadir, "Source Data 11.csv")))
 
 # make sure all missing observed are unobserved
 df[ismissing.(df[:Observed]), :Observed] = 0

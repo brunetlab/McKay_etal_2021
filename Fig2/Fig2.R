@@ -3,7 +3,7 @@ library(ggplot2)
 dirout = "McKay_etal_2021"
 datadir = "yourdatafolder"
 
-readin = paste(datadir, "/Table S1.csv", sep = "")
+readin = paste(datadir, "/Source Data 1.csv", sep = "")
 df30days = read.table(readin, sep= ",", header = TRUE)
 
 saveout = paste("~/", dirout, "/Fig2/Fig2A.pdf", sep ="")
@@ -16,7 +16,7 @@ dev.off()
 
 
 # loading in deviations from ideal (3 or 7) feedings for 41 feeders over 2281 days worth of feedings
-readin = paste(datadir, "/Table S2.csv", sep = "")
+readin = paste(datadir, "/Source Data 2.csv", sep = "")
 freqd = read.table(readin, header = TRUE, sep = ",")
 p <- ggplot(data = freqd,aes(freqd$MissedFeedings)) + geom_histogram() +  theme_classic(base_size=16)
 saveout = paste("~/" , dirout , "/Fig2/Fig2B.pdf", sep ="")

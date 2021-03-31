@@ -2,7 +2,7 @@ library(ggplot2)
 
 datadir = "yourdatafolder"
 
-readin = paste(datadir, "/Table S10.csv", sep = "")
+readin = paste(datadir, "/Source Data 10.csv", sep = "")
 df = read.table(readin, sep= ",", header = TRUE)
 df = df[df$deviation >= 0,]
 

@@ -3,7 +3,7 @@ using CSV, DataFrames, Statistics, Bootstrap
 # processing data for feeding comparison
 cd(joinpath(ENV["HOME"], "McKay_etal_2021", "Fig2"))
 datadir = "yourdatafolder"
-raw = DataFrame(CSV.File(joinpath(datadir, "Table S3.csv")))
+raw = DataFrame(CSV.File(joinpath(datadir, "Source Data 3.csv")))
 # rename column
 raw = rename(raw, "Scaled_to_one_manual_feeding_at_target_20mg" => "ScaledFeed")
 

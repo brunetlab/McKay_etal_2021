@@ -8,12 +8,12 @@ using Distances, Statistics, StatsBase, StatsPlots, Interpolations, JuliaDB, CSV
 using DelimitedFiles, Dates
 #setup environment
 projectdir = joinpath(ENV["HOME"], "McKay_etal_2021")
-datadir = joinpath("yourdatadir", "Training")
+datadir = "yourdatadir"
 plotsout = joinpath(projectdir, "Fig5")
-metadatafile = joinpath(datadir, "TableS12_TrainingScoring.csv")
+metadatafile = joinpath(datadir, "Source Data 12.csv")
 mdata = readdlm(metadatafile, ',', header=true)
 include(joinpath(projectdir, "Fig5",  "fxnsFig5.jl"))
-formdir = joinpath(datadir, "Trajectories")
+formdir = joinpath(datadir, "Training Trajectories")
 
 # building JuliaDB file from csv trajectories and saving
 dbraw = loadtable(formdir)
